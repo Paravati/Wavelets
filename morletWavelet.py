@@ -3,10 +3,11 @@ import scipy
 import matplotlib.pyplot as plt
 
 
-def morletWavelet(fs, npnts, plot=False):
+def morletWavelet(fs, npnts, freq, plot=False):
     """ Morlet wavelet generator:
         fs - sampling frequency [Hz]
-        npnts - number of points for signal creation"""
+        npnts - number of points for signal creation
+        freq - peak frequency - defines number of peaks per wavelet"""
 
     # centered time vector
     timevec = np.arange(0, npnts) / fs
@@ -16,7 +17,6 @@ def morletWavelet(fs, npnts, plot=False):
     hz = np.linspace(0, fs / 2, int(np.floor(npnts / 2) + 1))
 
     # parameters
-    freq = 4  # peak frequency
     csw = np.cos(2 * np.pi * freq * timevec)  # cosine wave
     fwhm = .5  # full-width at half-maximum in seconds
     gaussian = np.exp(-(4 * np.log(2) * timevec ** 2) / fwhm ** 2)  # Gaussian
@@ -43,7 +43,8 @@ def morletWavelet(fs, npnts, plot=False):
         plt.show()
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     fs = 1024
     npnts = fs * 5  # 5 seconds
-    morletWavelet(500, 500, True)
+    freq = 6
+    morletWavelet(fs, npnts, freq, True)
