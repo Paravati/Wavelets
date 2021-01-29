@@ -5,10 +5,40 @@ from scipy.fftpack import fft
 import matplotlib.pyplot as plt
 
 
-def signalConvolutionWithWavelet():
-    fs = 1024
-    npnts = fs * 5  # 5 seconds
+def morletWaveletCreating(samples, fs, freq, fwhm):
+    """creating Morlet wavelet with peak frequency='freq' and full width at half-maximum='fwhm' in sec
+        samples - number of samples for creating time vector
+        fs - sampling frequency for time vector"""
+    timevec = np.arange(0, samples) / fs   # centered time vector
+    timevec = timevec - np.mean(timevec)
+    csw = np.cos(2 * np.pi * freq * timevec)  # cosine wave
+    gaussian = np.exp(-(4 * np.log(2) * timevec ** 2) / fwhm ** 2)  # Gaussian
 
+    MorletWavelet = csw * gaussian
+
+    return MorletWavelet
+
+
+def haarWaveletCreating(samples, fs):
+    timevec = np.arange(0, samples) / fs   # centered time vector
+
+    HaarWavelet = np.zeros(samples)
+    HaarWavelet[np.argmin(timevec ** 2): np.argmin((timevec - .5) ** 2)] = 1
+    HaarWavelet[np.argmin((timevec - .5) ** 2): np.argmin((timevec - 1 - 1 / fs) ** 2)] = -1
+
+    return HaarWavelet
+
+
+def mexicanHatWaveletCreating(samples, fs):
+    timevec = np.arange(0, samples) / fs   # centered time vector
+    s = .4
+    MexicanWavelet = (2 / (np.sqrt(3 * s) * np.pi ** .25)) * (1 - (timevec ** 2) / (s ** 2)) * np.exp(
+        (-timevec ** 2) / (2 * s ** 2))
+
+    return MexicanWavelet
+
+
+def signalConvolutionWithWavelet(MorletWav, HaarWav, MexHatWav, npnts, fs,  plot=True):
     # centered time vector
     timevec = np.arange(0, npnts) / fs
     timevec = timevec - np.mean(timevec)
@@ -16,67 +46,45 @@ def signalConvolutionWithWavelet():
     # for power spectrum
     hz = np.linspace(0, fs / 2, int(np.floor(npnts / 2) + 1))
 
-    ### create wavelets
-
-    # parameters
-    freq = 4  # peak frequency
-    csw = np.cos(2 * np.pi * freq * timevec)  # cosine wave
-    fwhm = .5  # full-width at half-maximum in seconds
-    gaussian = np.exp(-(4 * np.log(2) * timevec ** 2) / fwhm ** 2)  # Gaussian
-
-    ## Morlet wavelet
-    MorletWavelet = csw * gaussian
-
-    ## Haar wavelet
-    HaarWavelet = np.zeros(npnts)
-    HaarWavelet[np.argmin(timevec ** 2): np.argmin((timevec - .5) ** 2)] = 1
-    HaarWavelet[np.argmin((timevec - .5) ** 2): np.argmin((timevec - 1 - 1 / fs) ** 2)] = -1
-
-    ## Mexican hat wavelet
-    s = .4
-    MexicanWavelet = (2 / (np.sqrt(3 * s) * np.pi ** .25)) * (1 - (timevec ** 2) / (s ** 2)) * np.exp(
-        (-timevec ** 2) / (2 * s ** 2))
-
-    ## convolve with random signal
-
     # signal
     signal1 = scipy.signal.detrend(np.cumsum(np.random.randn(npnts)))
 
-    # convolve signal with different wavelets
-    morewav = np.convolve(signal1, MorletWavelet, 'same')
-    haarwav = np.convolve(signal1, HaarWavelet, 'same')
-    mexiwav = np.convolve(signal1, MexicanWavelet, 'same')
+    if plot:
+        # convolve signal with different wavelets
+        morewav = np.convolve(signal1, MorletWav, 'same')
+        haarwav = np.convolve(signal1, HaarWav, 'same')
+        mexiwav = np.convolve(signal1, MexHatWav, 'same')
 
-    # amplitude spectra
-    morewaveAmp = np.abs(scipy.fftpack.fft(morewav) / npnts)
-    haarwaveAmp = np.abs(scipy.fftpack.fft(haarwav) / npnts)
-    mexiwaveAmp = np.abs(scipy.fftpack.fft(mexiwav) / npnts)
+        # amplitude spectra
+        morewaveAmp = np.abs(scipy.fftpack.fft(morewav) / npnts)
+        haarwaveAmp = np.abs(scipy.fftpack.fft(haarwav) / npnts)
+        mexiwaveAmp = np.abs(scipy.fftpack.fft(mexiwav) / npnts)
 
-    ### plotting
-    # the signal
-    plt.plot(timevec, signal1, 'k')
-    plt.title('Signal')
-    plt.xlabel('Time (s)')
-    plt.show()
+        plt.figure(0)
+        plt.plot(timevec, signal1, 'k')
+        plt.title('Signal to convolve with wavelets')
+        plt.xlabel('Time (s)')
+        plt.show()
 
-    # the convolved signals
-    plt.subplot(211)
-    plt.plot(timevec, morewav, label='Morlet')
-    plt.plot(timevec, haarwav, label='Haar')
-    plt.plot(timevec, mexiwav, label='Mexican')
-    plt.title('Time domain')
-    plt.legend()
+        plt.figure(1)
+        # the convolved signals
+        plt.subplot(211)
+        plt.plot(timevec, morewav, label='Morlet')
+        plt.plot(timevec, haarwav, label='Haar')
+        plt.plot(timevec, mexiwav, label='Mexican')
+        plt.title('Time domain')
+        plt.legend()
 
-    # spectra of convolved signals
-    plt.subplot(212)
-    plt.plot(hz, morewaveAmp[:len(hz)], label='Morlet')
-    plt.plot(hz, haarwaveAmp[:len(hz)], label='Haar')
-    plt.plot(hz, mexiwaveAmp[:len(hz)], label='Mexican')
-    plt.yscale('log')
-    plt.xlim([0, 40])
-    plt.legend()
-    plt.xlabel('Frequency (Hz.)')
-    plt.show()
+        # spectra of convolved signals
+        plt.subplot(212)
+        plt.plot(hz, morewaveAmp[:len(hz)], label='Morlet')
+        plt.plot(hz, haarwaveAmp[:len(hz)], label='Haar')
+        plt.plot(hz, mexiwaveAmp[:len(hz)], label='Mexican')
+        plt.yscale('log')
+        plt.xlim([0, 40])
+        plt.legend()
+        plt.xlabel('Frequency (Hz.)')
+        plt.show()
 
 
 def narrowbandFiltering():
@@ -188,5 +196,13 @@ def narrowbandFiltering():
 
 
 if __name__ == "__main__":
-    narrowbandFiltering()
-    signalConvolutionWithWavelet()
+    fs = 1024
+    npnts = fs * 5  # 5 seconds
+    freq = 4
+    fwhm = .5
+
+    morlet = morletWaveletCreating(npnts, fs, freq, fwhm)
+    haar = haarWaveletCreating(npnts, fs)
+    mex = mexicanHatWaveletCreating(npnts, fs)
+    signalConvolutionWithWavelet(morlet, haar, mex, npnts, fs)
+    # narrowbandFiltering()
