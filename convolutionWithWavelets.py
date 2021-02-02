@@ -4,6 +4,9 @@ from scipy.signal import detrend
 from scipy.fftpack import fft
 import matplotlib.pyplot as plt
 
+# https://pywavelets.readthedocs.io/en/latest/ref/wavelets.html
+# https://pywavelets.readthedocs.io/en/latest/ref/cwt.html
+
 
 def morletWaveletCreating(samples, fs, freq, fwhm):
     """creating Morlet wavelet with peak frequency='freq' and full width at half-maximum='fwhm' in sec
@@ -87,10 +90,8 @@ def signalConvolutionWithWavelet(MorletWav, HaarWav, MexHatWav, npnts, fs,  plot
         plt.show()
 
 
-def narrowbandFiltering():
+def narrowbandFiltering(srate, npnts):
     # simulation parameters
-    srate = 4352  # hz
-    npnts = 8425
     time = np.arange(0, npnts) / srate
     hz = np.linspace(0, srate / 2, int(np.floor(npnts / 2) + 1))
 
@@ -205,4 +206,6 @@ if __name__ == "__main__":
     haar = haarWaveletCreating(npnts, fs)
     mex = mexicanHatWaveletCreating(npnts, fs)
     signalConvolutionWithWavelet(morlet, haar, mex, npnts, fs)
-    # narrowbandFiltering()
+    # srate = 4352  # hz
+    # npnts = 8425
+    # narrowbandFiltering(srate, npnts)

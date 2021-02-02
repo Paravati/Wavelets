@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 ## Haar wavelet
 ## Daubechie wavelet is haar wavelet with higher level of composition
 # https://en.wikipedia.org/wiki/Daubechies_wavelet
+# http://www.numerical-tours.com/matlab/wavelet_3_daubechies1d/
 
 
 def haarWaveletCreating(samples, fs, freq):
