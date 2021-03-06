@@ -1,5 +1,5 @@
 body{
-    background: linear-gradient(to bottom right, #00ff99 39%, #00cc99 100%);
+    background: linear-gradient(to bottom right, #b398ff, #b398cc);
     background-repeat: no-repeat;
 }
 .w3-margin{
@@ -39,6 +39,8 @@ font-size:64px!important
 }
 
 .page-header {
+    background: url("wavelets.jpg") no-repeat center;
+    background-size: cover;
     background-color: #DC143C;
     padding: 20px 20px 20px 40px;
 	font-family: monotype corsiva;
