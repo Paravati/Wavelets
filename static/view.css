@@ -1,0 +1,122 @@
+body{
+    background: linear-gradient(to bottom, #9999ff 0%, #99ccff 100%);
+    background-repeat: no-repeat;
+}
+.w3-margin{
+margin:16px!important
+}
+
+.w3-margin-top{
+margin-top:16px!important
+}
+
+.w3-margin-bottom{
+margin-bottom:16px!important
+}
+
+.w3-margin-left{
+margin-left:16px!important
+}
+
+.w3-margin-right{
+margin-right:16px!important
+}
+
+.w3-xlarge{
+font-size:24px!important
+}
+
+.w3-xxlarge{
+font-size:36px!important
+}
+
+.w3-xxxlarge{
+font-size:48px!important
+}
+
+.w3-jumbo{
+font-size:64px!important
+}
+
+.page-header {
+    background: url("wavelets.jpg") no-repeat center;
+    background-size: cover;
+    background-color: #DC143C;
+    padding: 20px 20px 20px 40px;
+	font-family: monotype corsiva;
+	padding: 200px 10px;
+
+}
+
+h1, h3, h4 {
+    font-family: 'Lobster', cursive;
+    font-size: 50;
+}
+
+h2{
+    font-family: 'Lobster', cursive;
+    font-size: 18;
+    font-color: brown;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  cursor: pointer;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}
