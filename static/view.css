@@ -1,6 +1,7 @@
 body{
     background: linear-gradient(to bottom, #9999ff 0%, #99ccff 100%);
     background-repeat: no-repeat;
+    margin: 0px;
 }
 .w3-margin{
 margin:16px!important
@@ -39,14 +40,18 @@ font-size:64px!important
 }
 
 .page-header {
-    background: url("wavelets.jpg") no-repeat center;
+    background: url("wavelet-huge.jpg") no-repeat center;
     background-size: cover;
-    background-color: #DC143C;
-    padding: 20px 20px 20px 40px;
 	font-family: monotype corsiva;
-	padding: 200px 10px;
-
+	padding: 240px 10px;
 }
+
+#down {
+    height: 600px;
+    width: 300px;
+    margin-top: 75%;
+    padding-bottom: 25%;
+ }
 
 h1, h3, h4 {
     font-family: 'Lobster', cursive;
