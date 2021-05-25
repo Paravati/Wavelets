@@ -24,7 +24,8 @@ margin-right:16px!important
 }
 
 .w3-xlarge{
-font-size:24px!important
+font-size:24px!important;
+text-align: center;
 }
 
 .w3-xxlarge{
@@ -36,16 +37,31 @@ font-size:48px!important
 }
 
 .w3-jumbo{
-font-size:64px!important
+font-size:64px!important;
+text-align: center;
 }
 
 .page-header {
     background: url("wavelet-huge.jpg") no-repeat center;
     background-size: cover;
-	font-family: monotype corsiva;
 	padding: 240px 10px;
 }
 
+.page-header-strip{
+    background-color: rgba(1, 23, 50, 0.5);
+    height: auto;
+    width: auto;
+    font-family: monotype corsiva;
+    padding-bottom: 20px;
+}
+
+.get-started-button{
+    height: 50px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
 #down {
     height: 600px;
     width: 300px;
