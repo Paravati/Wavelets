@@ -45,6 +45,8 @@ text-align: center;
     background: url("wavelet-huge.jpg") no-repeat center;
     background-size: cover;
 	padding: 240px 10px;
+	height: 100%;
+	width: 100%;
 }
 
 .page-header-strip{
