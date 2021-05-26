@@ -12,13 +12,15 @@
         <div class="page-header-strip">
             <h1 class="w3-margin w3-jumbo">Wavelets</h1>
             <p class="w3-xlarge">Did you know about this...?</p>
-            <button class="get-started-button" onclick="scrollWin(0,500)">Get Started</button>
+            <button class="get-started-button" onclick="scrollWin()">Get Started</button>
         </div>
     </header>
     <script>
-            function scrollWin(x, y) {
-                window.scrollBy(x, y);
-            }
+        function scrollWin() {
+            var myImg = document.querySelector(".page-header");
+            var y = myImg.clientHeight;
+            window.scrollBy(0, y);
+        }
     </script>
 
     <div class="section-two">
