@@ -14,5 +14,7 @@ window.onclick = function(e) {
   }
 }
 
-
+function goto(url){
+    document.location.href = 'morlet.html';
+}
 
