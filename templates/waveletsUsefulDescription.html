@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <title>Wavelets processing</title>
     <link rel="stylesheet" href="static/view.css">
+    <link rel="shortcut icon" href="#" />  <!--blad favicon.ico -->
 <!--    <script src="{{ url_for('static', filename='script.js')}}" type="text/javascript" ></script>-->
-    <!-- TODO: https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_ref_js_scrollspy&stacked=h -->
+
+<!--    <script src="{{ url_for('static', filename='script.js')}}" type="text/javascript" ></script>-->
+<!-- TODO: https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_ref_js_scrollspy&stacked=h -->
 </head>
 <body>
     <header class="page-header">
@@ -25,12 +28,12 @@
 
     <div class="section-two">
         <div class="button-group">
-            <button class="button-wave" id="morl">Morlet</button>
-            <button class="button-wave" id="haar">Haar</button>
-            <button class="button-wave" id="daub">Daubechie</button>
-            <button class="button-wave" id="mex">Mexican hat</button>
-            <button class="button-wave" id="compl">Complex wavelet</button>
-            <button class="button-wave" id="transform">Wavelet transform</button>
+            <button class="button-wave" id="morl" onclick="window.location.href='/morlet'">Morlet</button>
+            <button class="button-wave" id="haar" onclick="window.location.href='/haar'">Haar</button>
+            <button class="button-wave" id="daub" onclick="window.location.href='/daubechie'">Daubechie</button>
+            <button class="button-wave" id="mex" onclick="window.location.href='/mexicanHat'">Mexican hat</button>
+            <button class="button-wave" id="compl" onclick="window.location.href='/complexWavelets'">Complex wavelet</button>
+            <button class="button-wave" id="transform" onclick="window.location.href='/waveletTransform'">Wavelet transform</button>
         </div>
 
 <!--        <div>-->

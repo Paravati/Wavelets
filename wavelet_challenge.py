@@ -5,7 +5,7 @@ from scipy.io import loadmat
 import scipy.signal as signal
 
 # load the file
-matfile = loadmat('wavelet_codeChallenge.mat')
+matfile = loadmat('matlab-scripts/wavelet_codeChallenge.mat')
 
 
 signalOriginal = matfile['signal']

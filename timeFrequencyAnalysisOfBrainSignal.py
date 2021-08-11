@@ -7,7 +7,7 @@ import scipy.io as sio
 import copy
 
 # load in data
-braindat = sio.loadmat('data4TF.mat')
+braindat = sio.loadmat('matlab-scripts/data4TF.mat')
 timevec = braindat['timevec'][0]
 srate = braindat['srate'][0]
 data = braindat['data'][0]
