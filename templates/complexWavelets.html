@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "mainView.html" %}
+{% block title %}Wavelets{% endblock %}
+{% block content %}
+<main>
+  <div>
+    <h1>Complex wavelets</h1> <p>- lorem ipsum
+    </p>
+  </div>
 
-</body>
-</html>
+  <div>
+    <p>
+      The Morlet wavelet in time domain is represented in the following figure.
+    </p>
+    <img src="static/morlet_time_domain.jpg" alt="Morlet wavelet in time domain" style="width:900px;height:300px;">
+  </div>
+
+
+</main>
+
+{% endblock %}

@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "mainView.html" %}
+{% block title %}Wavelets{% endblock %}
+{% block content %}
+<main>
+  <div>
+    <h1>Morlet Wavelet</h1> <p>- In mathematics, the Morlet wavelet (or Gabor wavelet)
+      is a wavelet composed of a complex exponential (carrier) multiplied by
+      a Gaussian window (envelope). This wavelet is closely related to human perception,
+      both hearing and vision.
+    </p>
+  </div>
 
-</body>
-</html>
+  <div>
+
+    <img src="static/sombrero.gif" alt="Morlet wavelet in time domain" style="width:300px;height:300px;">
+  </div>
+
+
+</main>
+
+{% endblock %}
